@@ -15,6 +15,8 @@ class Board
 {
 private:
     std::vector<Piece> mPlacedPieces;
+    int mRowLen;
+    int mColLen;
     int mUpperLeftX;
     int mUpperLeftY;
     char** mGrid;
@@ -42,6 +44,21 @@ public:
      *         return false if it was not
      */
     bool place(Piece p, Rotation r);
+
+    /**
+     * Returns whether or not the board is solved.
+     */
+    bool solved();
+
+    /**
+     * Pop the last placed item off of the board.
+     */
+    void pop();
+
+    /**
+     * Print the board.
+     */
+    void print();
 };
 
 #endif // _BOARD_H_

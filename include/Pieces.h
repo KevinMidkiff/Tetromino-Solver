@@ -24,12 +24,20 @@ enum Piece : char
 /**
  * Possible rotation for pieces
  */
-enum Rotation
+enum Rotation : int
 {
-    ROT_0,
-    ROT_90,
-    ROT_180,
-    ROT_270
+    ROT_0   = 0,
+    ROT_90  = 1,
+    ROT_180 = 2,
+    ROT_270 = 3
 };
+
+/**
+ * Get the number of rotations for the given piece.
+ *
+ * @param p - Piece
+ * @return Number of possible rotations
+ */
+int getNumberRotations(Piece p);
 
 #endif // _PIECES_H_
