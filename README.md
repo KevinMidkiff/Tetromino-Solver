@@ -1,2 +1,3 @@
-# Tetromino-Solver
+Tetromino-Solver
+================
 Tetromino Solver
