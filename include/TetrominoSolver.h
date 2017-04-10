@@ -21,14 +21,6 @@ private:
     std::vector<Piece> mPieces;
     Board* mBoard;
 
-    /**
-     * Recursive solve method.
-     *
-     * @param pieces - List of pieces to try solving with
-     * @return true if solved, false if failed
-     */
-    bool solver(std::vector<Piece> pieces);
-
 public:
     /**
      * Constructor
