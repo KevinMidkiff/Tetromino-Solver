@@ -33,13 +33,20 @@ bool TetrominoSolver::solve()
 
 bool TetrominoSolver::solver(std::vector<Piece> pieces)
 {
-    // Do the recursive stuff here
+    int size = pieces.size();
+
     if(mBoard->solved())
         return true;
-    if(pieces.size() == 0)
+    if(size == 0)
         return false;
 
-    int size = pieces.size();
+#ifdef DEBUG
+    printf("Pieces: ");
+    for(auto p : pieces)
+        printf("%c", p);
+    printf("\n");
+#endif
+
 
     for(int i = 0; i < size; i++)
     {
@@ -48,12 +55,25 @@ bool TetrominoSolver::solver(std::vector<Piece> pieces)
 
         for(int j = 0; j < getNumberRotations(p); j++)
         {
-            if(mBoard->place(p, static_cast<Rotation>(j)))
+            Rotation r = static_cast<Rotation>(j);
+#ifdef DEBUG
+            printf("Trying to place piece '%c' at rotation '%d'\n", p, r);
+#endif
+            if(mBoard->place(p, r))
             {
+#ifdef DEBUG
+                printf("Successfully placed piece '%c' at rotation '%d'\n", p, r);
+                mBoard->print();
+                printf("\n");
+#endif
                 if(this->solver(pieces))
                     return true;
                 mBoard->pop();
             }
+#ifdef DEBUG
+            else
+                printf("Failed to place piece '%c' at rotation '%d'\n", p, r);
+#endif
         }
 
         pieces.push_back(p);

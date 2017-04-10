@@ -1,2 +1,5 @@
 # Ignore build cmake build directory
 build/
+
+# Ignore vim swap files
+**/*.swp

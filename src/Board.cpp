@@ -80,7 +80,7 @@ std::pair<int,int>* Board::getOffsets(Piece p, Rotation r)
     case PIECE_T:
         switch(r)
         {
-        case ROT_0:   offs = initOffsets(initPair(1, 0), initPair(1, 1), initPair(0, 2)); break;
+        case ROT_0:   offs = initOffsets(initPair(1, 0), initPair(1, 1), initPair(2, 0)); break;
         case ROT_90:  offs = initOffsets(initPair(0, 1), initPair(0, 2), initPair(-1, 1)); break;
         case ROT_180: offs = initOffsets(initPair(0, 1), initPair(-1, 1), initPair(1, 1)); break;
         case ROT_270: offs = initOffsets(initPair(0, 1), initPair(0, 2), initPair(1, 1)); break;
@@ -198,6 +198,11 @@ void Board::findUpperLeft()
             found = true;
     }
 
+#ifdef DEBUG
+    printf("Updating upper (x,y): (%d, %d) => (%d, %d)\n",
+           mUpperLeftX, mUpperLeftY, x, y);
+#endif
+
     mUpperLeftX = x;
     mUpperLeftY = y;
 }
@@ -214,6 +219,11 @@ void Board::pop()
         std::pair<int,int> xy = pp.offsets[i];
         mGrid[pp.upperY + xy.second][pp.upperX + xy.first] = EMPTY_CELL;
     }
+
+#ifdef DEBUG
+    printf("Resetting upper (x,y): (%d, %d) => (%d, %d)\n",
+           mUpperLeftX, mUpperLeftY, pp.upperX, pp.upperY);
+#endif
 
     // Reset the board's upper left x and y to the previous values
     mUpperLeftX = pp.upperX;
