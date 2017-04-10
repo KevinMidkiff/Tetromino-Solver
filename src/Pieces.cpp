@@ -18,4 +18,5 @@ int getNumberRotations(Piece p)
     case PIECE_L:
     case PIECE_P: return 4;
     }
+    return -1;
 }

@@ -7,14 +7,6 @@
 #include "TetrominoSolver.h"
 
 
-void printPieces(std::vector<Piece> pieces)
-{
-    printf("Pieces: ");
-    for(auto piece : pieces)
-        printf("%c", piece);
-    printf("\n");
-}
-
 TetrominoSolver::TetrominoSolver(int m, int n, std::vector<Piece> pieces)
 {
     mPieces = pieces;
