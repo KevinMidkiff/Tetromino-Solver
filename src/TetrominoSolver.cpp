@@ -7,6 +7,14 @@
 #include "TetrominoSolver.h"
 
 
+void printPieces(std::vector<Piece> pieces)
+{
+    printf("Pieces: ");
+    for(auto piece : pieces)
+        printf("%c", piece);
+    printf("\n");
+}
+
 TetrominoSolver::TetrominoSolver(int m, int n, std::vector<Piece> pieces)
 {
     mPieces = pieces;
@@ -28,6 +36,8 @@ bool TetrominoSolver::solver(std::vector<Piece> pieces)
     // Do the recursive stuff here
     if(mBoard->solved())
         return true;
+    if(pieces.size() == 0)
+        return false;
 
     int size = pieces.size();
 

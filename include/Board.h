@@ -8,18 +8,47 @@
 #define _BOARD_H_
 
 #include <vector>
+#include <utility>
 
 #include "Pieces.h"
 
+// Character which represents an empty cell in the board's grid
+#define EMPTY_CELL '-'
+#define OFFSET_LEN 4
+
+/**
+ * Structure of a placed piece on the board.
+ */
+struct PiecePlacement
+{
+    Piece p;
+    std::pair<int,int>* offsets;
+    int upperX;
+    int upperY;
+};
+
+/**
+ * Representation of a board.
+ */
 class Board
 {
 private:
-    std::vector<Piece> mPlacedPieces;
+    std::vector<PiecePlacement> mPlacedPieces;
     int mRowLen;
     int mColLen;
     int mUpperLeftX;
     int mUpperLeftY;
+    char mLetter;
     char** mGrid;
+    bool mSolved;
+
+    // TODO: Document private methods
+    std::pair<int,int> initPair(int x, int y);
+    std::pair<int,int>* initOffsets(std::pair<int,int> p1,
+                                   std::pair<int,int> p2,
+                                   std::pair<int,int> p3);
+    std::pair<int,int>* getOffsets(Piece p, Rotation r);
+    void findUpperLeft();
 
 public:
     /**
