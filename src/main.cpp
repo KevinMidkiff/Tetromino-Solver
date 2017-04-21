@@ -29,26 +29,38 @@ int main(int argc, char** argv)
     // Check if m x n is greater than the max possible size
     if((m * n) > MAX_SIZE)
     {
+#ifdef DEBUG
+        printf("Failed: %d * %d > %d\n", m, n, MAX_SIZE);
+#endif
         printf("?\n");
-        return -1;
+        return 0;
     }
 
     while((piece = getchar()) != EOF)
-        pieces.push_back(static_cast<Piece>(piece));
+    {
+        if(piece != '\n')
+            pieces.push_back(static_cast<Piece>(piece));
+    }
 
     // Check that the number of pieces does not exceed the max
     // number of pieces
     if(pieces.size() > MAX_PIECES)
     {
+#ifdef DEBUG
+        printf("Failed: # of pieces %d > %d\n", (int) pieces.size(), MAX_PIECES);
+#endif
         printf("?\n");
-        return -1;
+        return 0;
     }
 
     // Check if there are too many pieces to fit in the area.
-    if(m * n != (int) pieces.size() * 4)
+    if(m * n != ((int) pieces.size()) * 4)
     {
+#ifdef DEBUG
+        printf("Failed: %d * %d > %d\n", m, n, (int) pieces.size() * 4);
+#endif
         printf("?\n");
-        return -1;
+        return 0;
     }
 
     // Create the solver and solve
@@ -63,6 +75,5 @@ int main(int argc, char** argv)
 
     delete ts;
 
-    // Exit with 0 if success and -1 if failure
-    return (solved) ? 0 : -1;
+    return 0;
 }
